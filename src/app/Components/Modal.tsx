@@ -1,15 +1,17 @@
-import Image from "next/image";
-import { useEffect, useRef } from "react";
+import { FC } from "react";
 import LoginIcon from "../../../public/Svgs/LoginIcon";
+import { ModalProps } from "../types/ModalType";
 
-export default function Modal({
+const Modal: FC<ModalProps> = ({
   onChange,
   title,
   desc,
   inputObj,
   submitBtnTxt,
-}) {
-  const modalRef = useRef(null);
+}) => {
+  function handleDismissModal() {
+    onChange(false);
+  }
 
   return (
     <div className="bg-white rounded-3xl p-4 w-full h-full">
@@ -36,7 +38,11 @@ export default function Modal({
             </div>
           );
         })}
-        <div className="bg-[#5057EA] cursor-pointer rounded-xl p-3 mb-12 mt-5">
+        <div
+          role="button"
+          onClick={handleDismissModal}
+          className="bg-[#5057EA] cursor-pointer rounded-xl p-3 mb-12 mt-5"
+        >
           <p className="font-semibold text-sm text-center text-white">
             {submitBtnTxt || "Sign-up"}
           </p>
@@ -44,4 +50,6 @@ export default function Modal({
       </div>
     </div>
   );
-}
+};
+
+export default Modal;

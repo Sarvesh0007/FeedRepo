@@ -1,20 +1,25 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { LOGIN_OBJ, SIGN_UP_OBJ } from "../../../Constants/ModalConst";
 import Modal from "../Components/Modal";
 
 export default function HomePagege() {
-  const [openModal, setOpenModal] = useState(false);
+  const [openModal, setOpenModal] = useState<boolean>(false);
+  const [isLoginModal, setIsLoginModal] = useState<boolean | null>(null);
 
-  const modalRef = useRef(null);
+  const modalRef = useRef<HTMLDivElement>(null);
 
   function handlClick() {
     setOpenModal(true);
   }
 
   useEffect(() => {
-    function handleClickedOutside(event) {
-      if (modalRef.current && !modalRef?.current?.contains(event.target)) {
+    function handleClickedOutside(event: MouseEvent) {
+      if (
+        modalRef.current &&
+        !modalRef?.current?.contains(event.target as Node)
+      ) {
         setOpenModal(false);
       }
     }
@@ -35,7 +40,7 @@ export default function HomePagege() {
             className="bg-[#EBEBEB] px-3 pt-3 min-w-[498px] min-h-[572px] rounded-3xl"
           >
             <Modal
-              inputObj={inputObj}
+              inputObj={LOGIN_OBJ}
               onChange={setOpenModal}
               title="Sign in to continue"
               desc="Sign in to access all the features on this app"
@@ -52,21 +57,3 @@ export default function HomePagege() {
     </div>
   );
 }
-
-const inputObj = [
-  {
-    key: "email_key",
-    title: "Email or username",
-    placeHolderTxt: "Enter your email or username",
-  },
-  {
-    key: "password_key",
-    title: "Password",
-    placeHolderTxt: "Enter your password",
-  },
-  {
-    key: "repeat_password_key",
-    title: "Repeat password",
-    placeHolderTxt: "Enter your password again",
-  },
-];
