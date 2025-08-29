@@ -1,6 +1,7 @@
 import { FC } from "react";
-import LoginIcon from "../../../public/Svgs/LoginIcon";
+import LoginIcon from "../../../public/Svgs/Svgs";
 import { ModalProps } from "../types/ModalType";
+import { useRouter } from "next/navigation";
 
 const Modal: FC<ModalProps> = ({
   onChange,
@@ -9,7 +10,9 @@ const Modal: FC<ModalProps> = ({
   inputObj,
   submitBtnTxt,
 }) => {
+  const router = useRouter();
   function handleDismissModal() {
+    router.push("/");
     onChange(false);
   }
 
