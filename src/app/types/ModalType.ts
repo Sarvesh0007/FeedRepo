@@ -3,14 +3,11 @@ export interface InputField {
   title: string;
   placeHolderTxt: string;
   type?: "text" | "password";
-  input: string;
+  input?: string;
 }
 
 export interface ModalProps {
   onChange: (open: boolean) => void;
-  title: string;
-  desc: string;
-  inputObj: InputField[];
   submitBtnTxt?: string;
 }
 

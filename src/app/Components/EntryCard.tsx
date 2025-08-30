@@ -18,8 +18,6 @@ export default function EntryCard({
   return (
     <div className="bg-[#00000008] p-2 rounded-3xl h-[224px] w-[568px]">
       <div className="w-full flex flex-col justify-between rounded-3xl shadow-sm border border-[#D9D9D9] bg-white h-full">
-        {/* Toolbar */}
-
         <EntryCardContainer
           notImplemented={notImplemented}
           onSubmit={onSubmit}
@@ -27,7 +25,6 @@ export default function EntryCard({
           input={input}
         />
 
-        {/* Footer */}
         <div className="flex w-full border-t border-[#D9D9D9] justify-between px-3 items-center">
           <div className="flex items-center gap-3 my-2">
             <div
