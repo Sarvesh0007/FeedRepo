@@ -11,7 +11,7 @@ export default function Home() {
           <p className="text-base font-bold text-black">foo-rum</p>
         </picture>
         <Link href={"/atlys-auth"}>
-          <picture className="flex items-center gap-2 cursor-pointer">
+          <picture className="flex items-center transition ease-in-out delay-150  hover:translate-y-1 hover:scale-80  duration-300 gap-2 cursor-pointer">
             <p className="text-sm font-semibold text-black">Login</p>
             <LoginIcon />
           </picture>

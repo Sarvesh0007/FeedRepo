@@ -41,7 +41,7 @@ export default function EntryCard({
             </div>
           </div>
           <button
-            className="cursor-pointer"
+            className="cursor-pointer transition ease-in-out delay-150 hover:translate-y-1 hover:scale-100 duration-120"
             disabled={input?.length <= 0}
             onClick={onSubmit}
           >

@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import useAuth from "../hooks/useAuth";
 import { LOGIN_OBJ, SIGN_UP_OBJ } from "../../../Constants/ModalConst";
 import ModalBody from "./ModalBody";
+import { AnimatePresence, motion } from "framer-motion";
 
 const Modal: FC<ModalProps> = ({ onChange, page }) => {
   const router = useRouter();
@@ -114,7 +115,15 @@ const Modal: FC<ModalProps> = ({ onChange, page }) => {
         page === "authPage" ? "" : "bg-black/30 backdrop-blur-sm z-50"
       }`}
     >
-      <div ref={modalRef} className="bg-[#EBEBEB] pt-2 px-2 rounded-3xl">
+      <AnimatePresence></AnimatePresence>
+      <motion.div
+        initial={{ opacity: 0, y: -20, scale: 0.9 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        exit={{ opacity: 0, y: 20 }}
+        transition={{ duration: 0.3 }}
+        ref={modalRef}
+        className="bg-[#EBEBEB] pt-2 px-2 rounded-3xl"
+      >
         <div className="bg-white rounded-3xl p-6 w-[420px] min-h-[400px] shadow-lg">
           <div className="flex items-center justify-center mt-4 mb-6">
             <picture className="bg-[#F8F8F8] flex items-center justify-center w-12 rounded-full h-12">
@@ -165,7 +174,7 @@ const Modal: FC<ModalProps> = ({ onChange, page }) => {
             </button>
           </div>
         )}
-      </div>
+      </motion.div>
     </div>
   );
 };

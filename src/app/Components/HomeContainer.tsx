@@ -1,10 +1,11 @@
 "use client";
-import React, { useState } from "react";
+import { useState } from "react";
 import EntryCard from "./EntryCard";
 import PostCard from "./PostCard";
 import { Post } from "../types/ModalType";
 import useAuth from "../hooks/useAuth";
 import Modal from "./Modal";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function HomeContainer() {
   const [posts, setPosts] = useState<Post[]>([]);
@@ -34,14 +35,23 @@ export default function HomeContainer() {
         />
       </div>
 
-      {posts?.map((post, idx) => (
-        <PostCard
-          key={idx}
-          author={post.author}
-          time={post.time}
-          content={post.text}
-        />
-      ))}
+      <AnimatePresence>
+        {posts.map((post, idx) => (
+          <motion.div
+            key={idx}
+            initial={{ opacity: 0, y: -20, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 20 }}
+            transition={{ duration: 0.3 }}
+          >
+            <PostCard
+              author={post.author}
+              time={post.time}
+              content={post.text}
+            />
+          </motion.div>
+        ))}
+      </AnimatePresence>
 
       {showAuthModal && <Modal onChange={setShowAuthModal} />}
     </div>
