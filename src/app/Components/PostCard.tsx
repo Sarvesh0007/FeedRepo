@@ -4,7 +4,12 @@ import Image from "next/image";
 import userIcon from "../../../public/userIcon.svg";
 import { HeartIcon, ReplyIcon, ShareIcon } from "../../../public/Svgs/Svgs";
 
-export default function PostCard({ author, time, content }: PostCardProps) {
+export default function PostCard({
+  author,
+  time,
+  content,
+  styles,
+}: PostCardProps) {
   const notImplemented = () => alert("Function not implemented");
 
   return (
@@ -34,7 +39,16 @@ export default function PostCard({ author, time, content }: PostCardProps) {
             <p>🤩</p>
           </div>
 
-          <p className="text-[#000000D4] font-medium text-sm">{content}</p>
+          <p
+            style={{
+              fontWeight: styles?.bold ? "bold" : "normal",
+              fontStyle: styles?.italic ? "italic" : "normal",
+              textDecoration: styles?.underline ? "underline" : "none",
+            }}
+            className="text-[#000000D4] font-medium text-sm"
+          >
+            {content}
+          </p>
         </div>
       </div>
       <div className="flex items-center gap-3 px-5 py-2.5">

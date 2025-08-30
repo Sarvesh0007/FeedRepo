@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import {
   MicIcon,
   PlusIcon,
@@ -13,6 +14,10 @@ export default function EntryCard({
   onInputChange,
   onSubmit,
 }: EntryCardProps) {
+  const [isBold, setIsBold] = useState(false);
+  const [isItalic, setIsItalic] = useState(false);
+  const [isUnderline, setIsUnderline] = useState(false);
+
   const notImplemented = () => alert("Function not implemented");
 
   return (
@@ -20,9 +25,24 @@ export default function EntryCard({
       <div className="w-full flex flex-col justify-between rounded-3xl shadow-sm border border-[#D9D9D9] bg-white h-full">
         <EntryCardContainer
           notImplemented={notImplemented}
-          onSubmit={onSubmit}
+          onSubmit={() =>
+            onSubmit({
+              text: input,
+              styles: {
+                bold: isBold,
+                italic: isItalic,
+                underline: isUnderline,
+              },
+            })
+          }
           onInputChange={onInputChange}
           input={input}
+          isBold={isBold}
+          isItalic={isItalic}
+          isUnderline={isUnderline}
+          setIsBold={setIsBold}
+          setIsItalic={setIsItalic}
+          setIsUnderline={setIsUnderline}
         />
 
         <div className="flex w-full border-t border-[#D9D9D9] justify-between px-3 items-center">
@@ -43,7 +63,16 @@ export default function EntryCard({
           <button
             className="cursor-pointer"
             disabled={input?.length <= 0}
-            onClick={onSubmit}
+            onClick={() =>
+              onSubmit({
+                text: input,
+                styles: {
+                  bold: isBold,
+                  italic: isItalic,
+                  underline: isUnderline,
+                },
+              })
+            }
           >
             <SendButtonIcon />
           </button>
