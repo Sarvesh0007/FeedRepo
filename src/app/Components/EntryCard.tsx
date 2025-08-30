@@ -16,7 +16,7 @@ export default function EntryCard({
   const notImplemented = () => alert("Function not implemented");
 
   return (
-    <div className="bg-[#00000008] p-2 rounded-3xl h-[224px] w-[568px]">
+    <div className="bg-[#00000008] p-2 rounded-3xl md:h-[224px] md:w-[568px]">
       <div className="w-full flex flex-col justify-between rounded-3xl shadow-sm border border-[#D9D9D9] bg-white h-full">
         <EntryCardContainer
           notImplemented={notImplemented}
@@ -41,7 +41,7 @@ export default function EntryCard({
             </div>
           </div>
           <button
-            className="cursor-pointer transition ease-in-out delay-150 hover:translate-y-1 hover:scale-100 duration-120"
+            className="cursor-pointer"
             disabled={input?.length <= 0}
             onClick={onSubmit}
           >
