@@ -1,3 +1,5 @@
+import { Post } from "./ModalType";
+
 export interface User {
   id: string;
   name: string;
@@ -23,4 +25,10 @@ export interface StoredUser {
   name: string;
   email: string;
   password: string;
+}
+
+export interface PostsContextType {
+  posts: Post[];
+  addPost: (post: Post) => void;
+  clearPosts: () => void;
 }

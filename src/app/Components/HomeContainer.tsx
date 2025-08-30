@@ -2,38 +2,36 @@
 import { useState } from "react";
 import EntryCard from "./EntryCard";
 import PostCard from "./PostCard";
-import { Post } from "../types/ModalType";
 import useAuth from "../hooks/useAuth";
 import Modal from "./Modal";
 import { motion, AnimatePresence } from "framer-motion";
+import { usePosts } from "../providers/PostsProvider";
 
 export default function HomeContainer() {
-  const [posts, setPosts] = useState<Post[]>([]);
   const [input, setInput] = useState("");
   const { isLoggedIn } = useAuth();
   const [showAuthModal, setShowAuthModal] = useState(false);
 
+  const { posts, addPost } = usePosts();
+
   const handleSubmit = (data: {
     text: string;
-    styles:
-      | ({
+    styles?:
+      | {
           bold?: boolean;
           italic?: boolean;
           underline?: boolean;
-        } & React.CSSProperties)
+        }
       | undefined;
   }) => {
     if (!data.text.trim()) return;
 
-    setPosts([
-      {
-        author: "You",
-        time: "Just now",
-        text: data.text,
-        styles: data.styles ?? {},
-      },
-      ...posts,
-    ]);
+    addPost({
+      author: "You",
+      time: "Just now",
+      text: data.text,
+      styles: data.styles ?? {},
+    });
     setInput("");
   };
 
