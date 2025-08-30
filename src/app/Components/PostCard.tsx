@@ -8,7 +8,7 @@ export default function PostCard({ author, time, content }: PostCardProps) {
   const notImplemented = () => alert("Function not implemented");
 
   return (
-    <div className="w-[568px] px-1.5 pt-1.5 bg-[#00000008] border border-gray-200 shadow rounded-3xl">
+    <div className="w-[568px] px-1.5 pt-1.5 bg-[#00000008]  shadow rounded-3xl">
       <div className="bg-white rounded-3xl border min-h-[164px] shadow border-[#D9D9D9] p-3">
         <div className="flex items-center gap-2">
           <Image

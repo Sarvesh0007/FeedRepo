@@ -9,6 +9,7 @@ export interface InputField {
 export interface ModalProps {
   onChange: (open: boolean) => void;
   submitBtnTxt?: string;
+  page?: string;
 }
 
 export interface PostCardProps {
@@ -28,4 +29,13 @@ export interface Post {
   author: string;
   time: string;
   text: string;
+}
+
+export interface ModalBodyProps {
+  inputObj: InputField[];
+  modalType: string;
+  handleInputChange: (key: string, value: string) => void;
+  isLoggedIn: boolean;
+  handleSubmit: () => void;
+  formData: { [key: string]: string };
 }

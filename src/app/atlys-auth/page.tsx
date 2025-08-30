@@ -30,7 +30,7 @@ export default function AuthPage() {
     <main ref={modalRef}>
       {openModal && (
         <div>
-          <Modal onChange={setOpenModal} />
+          <Modal page="authPage" onChange={setOpenModal} />
         </div>
       )}
     </main>

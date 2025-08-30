@@ -6,8 +6,9 @@ import { ModalProps } from "../types/ModalType";
 import { useRouter } from "next/navigation";
 import useAuth from "../hooks/useAuth";
 import { LOGIN_OBJ, SIGN_UP_OBJ } from "../../../Constants/ModalConst";
+import ModalBody from "./ModalBody";
 
-const Modal: FC<ModalProps> = ({ onChange }) => {
+const Modal: FC<ModalProps> = ({ onChange, page }) => {
   const router = useRouter();
   const { user, isLoggedIn, register, loginWithCredentials } = useAuth();
   const modalRef = useRef<HTMLDivElement>(null);
@@ -101,10 +102,18 @@ const Modal: FC<ModalProps> = ({ onChange }) => {
     }
   }
 
+  const handleFormSubmit = () => {
+    setModalType((p) => (p === "signIn" ? "signUp" : "signIn"));
+  };
+
   const inputObj = modalType === "signIn" ? LOGIN_OBJ : SIGN_UP_OBJ;
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black/30 backdrop-blur-sm z-50">
+    <div
+      className={`fixed inset-0 flex items-center justify-center bg-black/30s backdrop-blur-sms zs-50 ${
+        page === "authPage" ? "" : "bg-black/30 backdrop-blur-sm z-50"
+      }`}
+    >
       <div ref={modalRef} className="bg-[#EBEBEB] pt-2 px-2 rounded-3xl">
         <div className="bg-white rounded-3xl p-6 w-[420px] min-h-[400px] shadow-lg">
           <div className="flex items-center justify-center mt-4 mb-6">
@@ -124,41 +133,14 @@ const Modal: FC<ModalProps> = ({ onChange }) => {
               : "Create an account to access all the features on this app"}
           </p>
 
-          <div className="px-6 mt-10 space-y-4">
-            {inputObj.map((item) => (
-              <div key={item.key}>
-                <p className="text-black font-semibold text-sm pb-1">
-                  {item.title}
-                </p>
-                <input
-                  className="bg-[#F4F4F4] font-normal text-sm outline-none w-full rounded-lg py-3 px-2"
-                  placeholder={item.placeHolderTxt}
-                  type={item.type === "password" ? "password" : "text"}
-                  value={formData[item.key] || ""}
-                  onChange={(e) => handleInputChange(item.key, e.target.value)}
-                  disabled={isLoggedIn}
-                />
-              </div>
-            ))}
-
-            <div
-              role="button"
-              onClick={!isLoggedIn ? handleSubmit : undefined}
-              className={`${
-                isLoggedIn
-                  ? "bg-gray-400 cursor-not-allowed"
-                  : "bg-[#5057EA] cursor-pointer"
-              } rounded-xl p-3 mb-6 mt-6`}
-            >
-              <p className="font-semibold text-sm text-center text-white">
-                {isLoggedIn
-                  ? "Already Signed In"
-                  : modalType === "signIn"
-                  ? "Sign In"
-                  : "Sign Up"}
-              </p>
-            </div>
-          </div>
+          <ModalBody
+            formData={formData}
+            handleInputChange={handleInputChange}
+            handleSubmit={handleSubmit}
+            inputObj={inputObj}
+            isLoggedIn={isLoggedIn}
+            modalType={modalType}
+          />
         </div>
 
         {!isLoggedIn ? (
@@ -170,9 +152,8 @@ const Modal: FC<ModalProps> = ({ onChange }) => {
             </p>
             <button
               className="font-semibold cursor-pointer text-sm text-[#5057EA]"
-              onClick={() =>
-                setModalType((p) => (p === "signIn" ? "signUp" : "signIn"))
-              }
+              onClick={handleFormSubmit}
+              onKeyDown={(e) => e.key === "Enter" && handleFormSubmit()}
             >
               {modalType === "signIn" ? "Sign Up" : "Sign In"}
             </button>

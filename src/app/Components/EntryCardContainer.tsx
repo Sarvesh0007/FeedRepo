@@ -40,30 +40,30 @@ export default function EntryCardContainer({
             </span>
 
             <span
-              className={`flex items-center bg-red-500s px-2 rounded-md cursor-pointer ${
-                isBold ? "bg-white shadow" : ""
+              className={`flex items-center px-2 rounded-md cursor-pointer ${
+                isBold ? "bg-white shadow font-bold" : "font-medium"
               }`}
               onClick={() => setIsBold((prev) => !prev)}
             >
-              <p className="font-bold text-black">B</p>
+              <p className=" text-black">B</p>
             </span>
 
             <span
               className={`flex items-center px-2.5 rounded-md cursor-pointer ${
-                isItalic ? "bg-white shadow" : ""
+                isItalic ? "bg-white shadow font-bold" : "font-medium"
               }`}
               onClick={() => setIsItalic((prev) => !prev)}
             >
-              <p className="font-bold italic text-[#727272]/80">I</p>
+              <p className="italic text-[#727272]/80">I</p>
             </span>
 
             <span
               className={`flex items-center px-2 rounded-md cursor-pointer ${
-                isUnderline ? "bg-white shadow" : ""
+                isUnderline ? "bg-white shadow font-bold" : "font-medium"
               }`}
               onClick={() => setIsUnderline((prev) => !prev)}
             >
-              <p className="underline font-bold text-[#727272]/80">U</p>
+              <p className="underline text-[#727272]/80">U</p>
             </span>
 
             <div className="w-px h-7 bg-[#0000001A]" />
