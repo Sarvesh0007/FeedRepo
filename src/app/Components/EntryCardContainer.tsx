@@ -1,5 +1,3 @@
-"use client";
-import React, { useState } from "react";
 import {
   ArrowIcon,
   BinIcon,
@@ -13,11 +11,13 @@ export default function EntryCardContainer({
   input,
   onSubmit,
   onInputChange,
+  isBold,
+  isItalic,
+  isUnderline,
+  setIsBold,
+  setIsItalic,
+  setIsUnderline,
 }: EntryCardProps) {
-  const [isBold, setIsBold] = useState(false);
-  const [isItalic, setIsItalic] = useState(false);
-  const [isUnderline, setIsUnderline] = useState(false);
-
   const getInputStyle = () => {
     const style: React.CSSProperties = {};
     if (isBold) style.fontWeight = "bold";
@@ -43,7 +43,7 @@ export default function EntryCardContainer({
               className={`flex items-center px-2 rounded-md cursor-pointer ${
                 isBold ? "bg-white shadow font-bold" : "font-medium"
               }`}
-              onClick={() => setIsBold((prev) => !prev)}
+              onClick={() => setIsBold && setIsBold(!isBold)}
             >
               <p className=" text-black">B</p>
             </span>
@@ -52,7 +52,7 @@ export default function EntryCardContainer({
               className={`flex items-center px-2.5 rounded-md cursor-pointer ${
                 isItalic ? "bg-white shadow font-bold" : "font-medium"
               }`}
-              onClick={() => setIsItalic((prev) => !prev)}
+              onClick={() => setIsItalic && setIsItalic(!isItalic)}
             >
               <p className="italic text-[#727272]/80">I</p>
             </span>
@@ -61,7 +61,7 @@ export default function EntryCardContainer({
               className={`flex items-center px-2 rounded-md cursor-pointer ${
                 isUnderline ? "bg-white shadow font-bold" : "font-medium"
               }`}
-              onClick={() => setIsUnderline((prev) => !prev)}
+              onClick={() => setIsUnderline && setIsUnderline(!isUnderline)}
             >
               <p className="underline text-[#727272]/80">U</p>
             </span>

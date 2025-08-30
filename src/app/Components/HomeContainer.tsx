@@ -13,9 +13,27 @@ export default function HomeContainer() {
   const { isLoggedIn } = useAuth();
   const [showAuthModal, setShowAuthModal] = useState(false);
 
-  const handleSubmit = () => {
-    if (!input.trim()) return;
-    setPosts([{ author: "You", time: "Just now", text: input }, ...posts]);
+  const handleSubmit = (data: {
+    text: string;
+    styles:
+      | ({
+          bold?: boolean;
+          italic?: boolean;
+          underline?: boolean;
+        } & React.CSSProperties)
+      | undefined;
+  }) => {
+    if (!data.text.trim()) return;
+
+    setPosts([
+      {
+        author: "You",
+        time: "Just now",
+        text: data.text,
+        styles: data.styles ?? {},
+      },
+      ...posts,
+    ]);
     setInput("");
   };
 
@@ -48,6 +66,15 @@ export default function HomeContainer() {
               author={post.author}
               time={post.time}
               content={post.text}
+              styles={
+                post?.styles
+                  ? {
+                      bold: post.styles.bold ?? false,
+                      italic: post.styles.italic ?? false,
+                      underline: post.styles.underline ?? false,
+                    }
+                  : undefined
+              }
             />
           </motion.div>
         ))}
