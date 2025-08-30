@@ -3,6 +3,7 @@ export interface InputField {
   title: string;
   placeHolderTxt: string;
   type?: "text" | "password";
+  input: string;
 }
 
 export interface ModalProps {
@@ -11,4 +12,23 @@ export interface ModalProps {
   desc: string;
   inputObj: InputField[];
   submitBtnTxt?: string;
+}
+
+export interface PostCardProps {
+  author: string;
+  time: string;
+  content: string;
+}
+
+export interface EntryCardProps {
+  input: string;
+  onInputChange: (val: string) => void;
+  onSubmit: () => void;
+  notImplemented?: () => void;
+}
+
+export interface Post {
+  author: string;
+  time: string;
+  text: string;
 }
