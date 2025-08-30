@@ -123,7 +123,17 @@ export default function EntryCardContainer({
           placeholder="How are you feeling today?"
           value={input}
           onChange={(e) => onInputChange(e.target.value)}
-          onKeyDown={(e) => e.key === "Enter" && onSubmit()}
+          onKeyDown={(e) =>
+            e.key === "Enter" &&
+            onSubmit({
+              text: input,
+              styles: {
+                bold: isBold,
+                italic: isItalic,
+                underline: isUnderline,
+              },
+            })
+          }
           style={getInputStyle()}
         />
       </div>
