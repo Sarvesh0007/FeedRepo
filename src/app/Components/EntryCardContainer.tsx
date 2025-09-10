@@ -27,7 +27,7 @@ export default function EntryCardContainer({
   };
 
   return (
-    <div className="p-3">
+    <div className="p-3 h-full">
       <div className="flex items-center justify-between">
         <div className="bg-[#00000008] p-1 rounded-md">
           <div className="flex items-center gap-4 justify-evenly">
@@ -115,7 +115,7 @@ export default function EntryCardContainer({
         </div>
       </div>
 
-      <div className="flex items-center gap-1 mt-3.5">
+      <div className="flex items-start gap-1 mt-3.5">
         <HappyIcon />
         <input
           type="text"

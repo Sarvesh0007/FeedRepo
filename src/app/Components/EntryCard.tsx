@@ -61,7 +61,9 @@ export default function EntryCard({
             </div>
           </div>
           <button
-            className="cursor-pointer"
+            className={`${
+              input?.length <= 0 ? "cursor-not-allowed" : "cursor-pointer"
+            }`}
             disabled={input?.length <= 0}
             onClick={() =>
               onSubmit({

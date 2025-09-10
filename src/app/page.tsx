@@ -4,7 +4,7 @@ import HomeContainer from "./Components/HomeContainer";
 
 export default function Home() {
   return (
-    <div className="w-full p-5">
+    <div className="w-full p-5 bg-[#FEFEFE] h-full">
       <div className="flex items-center justify-between">
         <picture className="flex items-center gap-2">
           <HomeIcon />
