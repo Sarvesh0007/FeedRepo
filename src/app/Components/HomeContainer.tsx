@@ -42,7 +42,7 @@ export default function HomeContainer() {
   };
 
   return (
-    <div className="mt-16 flex flex-col items-center gap-4">
+    <div className="mt-16 flex flex-col items-center gap-4 pb-10">
       <div onClick={handleEntryClick} className="w-fit">
         <EntryCard
           input={input}
